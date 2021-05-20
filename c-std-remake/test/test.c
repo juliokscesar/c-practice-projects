@@ -1,18 +1,14 @@
 #include "../src/string.h"
-
-#include <stdio.h>
+#include "../src/stdio.h"
 
 int main() 
 {
-    char* str = "Hello World!";
-    printf("str = %s\n", str);
-    printf("%d\n", (int)jstrlen(str));
+    char* str = "hello world!";
+    char* str1 = "HELLO WORLD!";
 
-    char dest[jstrlen(str)];
-    jstrcpy(dest, str);
-    printf("%s\n", dest);
+    strlower(str1);
 
-    printf("%d\n", jstrcmp(str, dest));
+    puts(str1);
 
     return 0;
 }

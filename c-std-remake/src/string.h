@@ -4,8 +4,11 @@
 #include "types.h"
 #include "bool.h"
 
-jsize_t jstrlen(const char* str);
-void jstrcpy(char* dest, const char* src);
-BOOL jstrcmp(const char* s1, const char* s2);
+jsize_t strlen(const char* str);
+void strcpy(char* dest, const char* src);
+void strlower(char* str);
+void strupper(char* str);
+int strcmp(const char* s1, const char* s2);
+int strcasecmp(const char* s1, const char* s2);
 
 #endif // JKSC_STRING_H

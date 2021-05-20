@@ -1,6 +1,8 @@
 #include "string.h"
 
-jsize_t jstrlen(const char* str)
+#include "ctype.h"
+
+jsize_t strlen(const char* str)
 {
     jsize_t length = 0;
 
@@ -12,28 +14,45 @@ jsize_t jstrlen(const char* str)
     return length;
 }
 
-void jstrcpy(char* dest, const char* src)
+void strlower(char* str)
 {
-    for (jsize_t i = 0, n = jstrlen(src); i < n; i++)
+    for (jsize_t i = 0, n = strlen(str); i < n; i++)
+        str[i] = tolower(str[i]);
+}
+
+void strupper(char* str)
+{
+    for (jsize_t i = 0, n = strlen(str); i < n; i++)
+        str[i] = toupper(str[i]);
+}
+
+void strcpy(char* dest, const char* src)
+{
+    for (; *src; src++)
     {
-        dest[i] = src[i];
-        dest[i + 1] = '\0';
+        *dest = *src;
+        *(dest + 1)= '\0';
+        dest++;
     }
 }
 
-BOOL jstrcmp(const char* s1, const char* s2)
+int strcmp(const char* s1, const char* s2)
 {
-    jsize_t n1 = jstrlen(s1);
-    jsize_t n2 = jstrlen(s2);
+    if (strlen(s1) != strlen(s2))
+        return strlen(s1) - strlen(s2);
 
-    if (n1 != n2)
-        return FALSE;
-
-    for (jsize_t i = 0; i < n1; i++)
+    for (; *s1 != 0x00 && *s2 != 0x00; s1++, s2++)
     {
-        if (s1[i] != s2[i])
-            return FALSE;
+        if (*s1 != *s2)
+            return *s1 - *s2;
+
+        s2++;
     }
 
-    return TRUE;
+    return 0;
+}
+
+int strcasecmp(const char* s1, const char* s2)
+{
+
 }
