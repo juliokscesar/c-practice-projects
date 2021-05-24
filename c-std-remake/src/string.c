@@ -1,6 +1,7 @@
 #include "string.h"
 
 #include "ctype.h"
+#include "stdio.h"
 
 jsize_t strlen(const char* str)
 {
@@ -14,16 +15,16 @@ jsize_t strlen(const char* str)
     return length;
 }
 
-void strlower(char* str)
+void strlower(char str[])
 {
     for (jsize_t i = 0, n = strlen(str); i < n; i++)
-        str[i] = tolower(str[i]);
+        str[i] = (char)tolower(str[i]);
 }
 
-void strupper(char* str)
+void strupper(char str[])
 {
     for (jsize_t i = 0, n = strlen(str); i < n; i++)
-        str[i] = toupper(str[i]);
+        str[i] = (char)toupper(str[i]);
 }
 
 void strcpy(char* dest, const char* src)
@@ -54,5 +55,12 @@ int strcmp(const char* s1, const char* s2)
 
 int strcasecmp(const char* s1, const char* s2)
 {
-
+    if (strlen(s1) != strlen(s2))
+        return strlen(s1) - strlen(s2);
+    
+    for (; *s1 && *s2; s1++, s2++)
+    {
+        if (tolower(*s1) != tolower(*s2))
+            return *s1 - *s2;
+    }
 }

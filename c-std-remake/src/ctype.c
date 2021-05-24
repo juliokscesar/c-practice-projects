@@ -75,10 +75,10 @@ BOOL isprint(const char c)
 
 int toupper(const int c)
 {
-    return (isalpha(c) && islower(c)) ? c - 32 : c;
+    return (isalpha(c) && islower(c)) ? c - 0x20 : c;
 }
 
 int tolower(const int c)
 {
-    return (isalpha(c) && isupper(c)) ? c + 32 : c;
+    return (isalpha(c) && isupper(c)) ? c + 0x20 : c;
 }
